@@ -5,7 +5,7 @@ LetterA = function(pos, size){
   this.size = size;
   var shadeOfRed = Math.floor(Math.random()*70)
   this.color = "rgba(158, "+ shadeOfRed +", 22, 1)"
-  console.log("rgba(158, "+ shadeOfRed +", 22, 1)");
+  // console.log("rgba(158, "+ shadeOfRed +", 22, 1)");
   this.pos = pos;
   this.angle = null
   this.streek = 0;

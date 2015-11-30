@@ -3,12 +3,33 @@ lib.totalAs = 0
 lib.pageConstants = []
 
 window.onload = function(){
-  console.log("loaded!")
-  document.onmousedown = lib.clickDraw;
+  // console.log("loaded!")
+  // document.onmousedown = lib.clickDraw;
 }
 
+lib.start = 0;
+lib.end = 0;
+
+document.onmousedown = function () {
+  lib.start = +new Date(); // get unix-timestamp in milliseconds
+  console.log("start", lib.start);
+};
+
+document.onmouseup = function (e) {
+  lib.end = +new Date();
+
+  var diff = lib.end - lib.start; // time difference in milliseconds
+  console.log(diff)
+  if(diff > 200){
+    var a1 = new LetterA([e.pageX, e.pageY], 3)
+    lib.fall(a1, 0)
+  }else{
+    lib.clickDraw(e);
+  }
+};
+
 lib.clickDraw = function(e) {
-  console.log("--Total As " + lib.totalAs);
+  // console.log("--Total As " + lib.totalAs);
 
   var randCirclePos = lib.getRandomPointOnCircle()
   var angle = randCirclePos[2]
