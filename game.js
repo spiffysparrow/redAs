@@ -18,7 +18,7 @@ document.onmousedown = function (e) {
 document.onmouseup = function (e) {
   lib.clickLifted = true;
   if(lib.growingA === null ){
-    if(lib.totalAs > 500){
+    if(lib.totalAs > 1000){
 
     }else{
       lib.clickDraw(e);
