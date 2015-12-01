@@ -2,29 +2,33 @@
 lib.totalAs = 0
 lib.pageConstants = []
 
-// window.onload = function(){
-//   // console.log("loaded!")
-//   // document.onmousedown = lib.clickDraw;
-// }
+lib.clickLifted = true;
+lib.growingA = null;
 
-lib.start = 0;
-lib.end = 0;
-
-document.onmousedown = function () {
-  lib.start = +new Date(); // get unix-timestamp in milliseconds
-  console.log("start", lib.start);
+document.onmousedown = function (e) {
+  lib.clickLifted = false;
+  setTimeout(function(){
+    if(!lib.clickLifted){
+      var a1 = new LetterA([e.pageX, e.pageY], .5)
+      lib.grow(a1, .1);
+    }
+  }, 200)
 };
 
 document.onmouseup = function (e) {
-  lib.end = +new Date();
-
-  var diff = lib.end - lib.start; // time difference in milliseconds
-  console.log(diff)
-  if(diff > 200){
-    var a1 = new LetterA([e.pageX, e.pageY], diff/200)
-    lib.fall(a1, 0)
+  lib.clickLifted = true;
+  if(lib.growingA === null ){
+    if(lib.totalAs > 100){
+      var c = lib.canvas
+      c.clearRect(0, 0, canvas.width, canvas.height);
+      lib.drawPageConstants()
+      c.font = "200px Helvetica Neue";
+      c.fillText("a/A",150,380);
+    }else{
+      lib.clickDraw(e);
+    }
   }else{
-    lib.clickDraw(e);
+    lib.fall(lib.growingA, 0)
   }
 };
 
@@ -126,6 +130,26 @@ lib.fall = function(subject, moved) {
     requestAnimationFrame(function(){
       lib.fall(subject, moved)
     })
+  }
+}
+
+lib.grow = function(subject) {
+  if (lib.growingA === null){
+    lib.growingA = subject;
+  }
+  var c = lib.canvas;
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  subject.size += .1;
+  console.log(subject);
+  subject.render(c)
+  lib.drawPageConstants()
+  console.log(lib.clickLifted);
+  if(lib.clickLifted === false){
+    requestAnimationFrame(function(){
+      lib.grow(subject)
+    })
+    }else{
+      lib.growingA = null
   }
 }
 
