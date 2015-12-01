@@ -18,12 +18,8 @@ document.onmousedown = function (e) {
 document.onmouseup = function (e) {
   lib.clickLifted = true;
   if(lib.growingA === null ){
-    if(lib.totalAs > 100){
-      var c = lib.canvas
-      c.clearRect(0, 0, canvas.width, canvas.height);
-      lib.drawPageConstants()
-      c.font = "200px Helvetica Neue";
-      c.fillText("a/A",150,380);
+    if(lib.totalAs > 500){
+
     }else{
       lib.clickDraw(e);
     }
