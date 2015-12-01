@@ -18,7 +18,6 @@ LetterA.prototype.render = function() {
   var x = this.pos[0]
   var y = this.pos[1]
   var size = this.size
-  console.log("size inside render", this.size);
   c.beginPath();
   c.moveTo(x, y);
   c.lineTo(x + 10 * size, y - 20 * size);
