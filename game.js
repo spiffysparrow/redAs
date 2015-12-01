@@ -2,10 +2,10 @@
 lib.totalAs = 0
 lib.pageConstants = []
 
-window.onload = function(){
-  // console.log("loaded!")
-  // document.onmousedown = lib.clickDraw;
-}
+// window.onload = function(){
+//   // console.log("loaded!")
+//   // document.onmousedown = lib.clickDraw;
+// }
 
 lib.start = 0;
 lib.end = 0;
@@ -21,7 +21,7 @@ document.onmouseup = function (e) {
   var diff = lib.end - lib.start; // time difference in milliseconds
   console.log(diff)
   if(diff > 200){
-    var a1 = new LetterA([e.pageX, e.pageY], 3)
+    var a1 = new LetterA([e.pageX, e.pageY], diff/200)
     lib.fall(a1, 0)
   }else{
     lib.clickDraw(e);
